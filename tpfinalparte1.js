@@ -1,4 +1,4 @@
-
+// https://youtu.be/HLkUN54WGHE
 let player;
 let imagenes = [];
 let pantalla;
