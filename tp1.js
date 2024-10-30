@@ -1,22 +1,23 @@
-// Felipe Vallejo 88164/7 Video: https://youtu.be/Ev8vjUcegPI
+// Felipe Vallejo 88164/7 Video: https://youtu.be/Ev8vjUcegPI  Comision 5 
 let obra;
 let mapeado;
 let ultimaPosicion = 0;
 
-
 function preload() {
- obra = loadImage("data/imagenAO.jpg");
+  obra = loadImage("data/imagenAO.jpg");
 }
 
 function setup() {
   createCanvas(800, 400);
   stroke(0, 255, 0);
-  
 }
 
 function draw() {
   background(10);
   
+  let brillo = calcularBrillo(mouseY);
+  tint(brillo); 
+
   for (let valor = 400; valor < 800; valor += 16) {
     mapeado = map(valor, 400, 800, 0, 12);
 
@@ -34,7 +35,20 @@ function draw() {
       }
     }
   }
-  image(obra, 0,0);
+  image(obra, 0, 0);
+}
+
+
+function cambiarColorAleatorio(minimo, maximo) {
+  let r = 0;
+  let g = random(minimo, maximo);
+  let b = random(minimo, maximo);
+  stroke(r, g, b);
+}
+
+function calcularBrillo(posicionY) {
+  
+return map(posicionY, 0, height, 50, 255);
 }
 
 function mouseDragged() {
@@ -42,13 +56,13 @@ function mouseDragged() {
 }
 
 function keyPressed() {
-  if (keyCode === 82) { // 'r' 
+  if (keyCode === 82) { // Tecla R
     background(10);
     stroke(0, 255, 0);
     ultimaPosicion = 0;
   }
-  if (keyCode === 32) { // Espaciadora
+  if (keyCode === 32) { // Barra espaciadora
     mapeado = map(0, 0, 600, 0, 255);
-    stroke(0, random(170, 255), random(170, 255));
+    cambiarColorAleatorio(170, 255); // Cambia a un color aleatorio dentro de los rangos que uno le pasa
   }
 }
